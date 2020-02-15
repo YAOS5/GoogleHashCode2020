@@ -7,6 +7,6 @@ public class Main {
 	    input.readTextFiles();
         ArrayList<Integer> result = DummyAlgo2(input.getMaxPizzaSlices, input.getNoPizzaSlices);
 
-        output.Tofile(result);
+        output.outputToFile(result);
     }
 }
