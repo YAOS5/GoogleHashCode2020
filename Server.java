@@ -2,9 +2,9 @@ import java.util.HashSet;
 
 
 class Server {
-  HashSet<Integer> endpoints;
+  HashSet<EndPoint> endpoints;
   int capacityLeft;
-  HashSet<Integer> videoStored;
+  HashSet<Video> videoStored;
 
   public Server(int capacity) {
     this.capacityLeft = capacity;
@@ -20,7 +20,7 @@ class Server {
       return false;
 
     capacityLeft -= video.size;
-    videoStored.add(video.id);
+    videoStored.add(video);
 
     return true;
   }
