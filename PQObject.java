@@ -22,6 +22,12 @@ class PQObject implements Comparable<PQObject>{
     }
 
   public void updateTS() {
+    // checking if the server is actually available
+    if (!server.isAvailable()) {
+      TS = -1;
+      return;
+    }
+
     TS = 0;
     for (EndPoint e: endpoints) {
       if (e.vidInE(video) && server.endpoints.contains(e)) {
