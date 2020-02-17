@@ -1,5 +1,3 @@
-package com.company;
-
 import java.io.File;  // Import the File class
 import java.util.*;
 import java.io.FileNotFoundException;  // Import this class to handle errors
@@ -13,7 +11,7 @@ public class Input {
     public void readTextFile() {
       try {
         Scanner sc = null;
-        sc = new Scanner(new File("/Users/shivam/Documents/GitHub/GoogleHashCode20/src/com/company/data/b_small.in"));
+        sc = new Scanner(new File("/Users/peteskishi/Documents/dev/HashCode20/data/e_also_big.in"));
         String line1 = sc.nextLine();
         String[] words1 = line1.split(" ");
         String line2 = sc.nextLine();

@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class DummyAlgo {
 
-    public static ArrayList<Integer> computeOutput(int M, int[] pizzas) {
+    public static ArrayList<Integer> computeOutput(int M, ArrayList<Integer> pizzas) {
         int total = 0;
         ArrayList<Integer> output = new ArrayList<>();
-        for (int i = 0; i < pizzas.length; i++) {
-            if (total + pizzas[i] <= M) {
-                total += pizzas[i];
+        for (int i = 0; i < pizzas.size(); i++) {
+            if (total + pizzas.get(i) <= M) {
+                total += pizzas.get(i);
                 output.add(i);
             }
         }
@@ -15,8 +15,4 @@ public class DummyAlgo {
         return output;
     }
 
-
-    public static void main(String[] args) {
-
-    }
 }

@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+// import Input.Input;
 
 public class Main {
 
     public static void main(String[] args) {
 	    Input input = new Input();
-	    input.readTextFiles();
-        ArrayList<Integer> result = DummyAlgo2(input.getMaxPizzaSlices, input.getNoPizzaSlices);
+	    input.readTextFile();
+        ArrayList<Integer> result = DummyAlgo2.computeOutput(input.getMaxSlices(), input.getNoPizzaSlices());
 
         output.outputToFile(result);
     }
