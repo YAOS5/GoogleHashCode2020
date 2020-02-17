@@ -8,6 +8,5 @@ public class Main {
 	    input.readTextFile();
         ArrayList<Integer> result = DummyAlgo2.computeOutput(input.getMaxSlices(), input.getNoPizzaSlices());
 
-        output.outputToFile(result);
     }
 }
