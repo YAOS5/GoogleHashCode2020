@@ -13,12 +13,22 @@ class PQObject implements Comparable<PQObject>{
     this.server = s;
     this.video = v;
     this.endpoints = endpoints;
+    updateTS();
   }
 
-  public int compareTo(PQObject p) 
+  public int compareTo(PQObject p)
     {
         return -(this.TS - p.TS);
     }
+
+  public void updateTS() {
+    TS = 0;
+    for (EndPoint e: endpoints) {
+      if (e.vidInE(video) && server.endpoints.contains(e)) {
+        TS += e.dataCenterLatency - e.latencyMap.get(server);
+      }
+    }
+  }
 
 
 }
