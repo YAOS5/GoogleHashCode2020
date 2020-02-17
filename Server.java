@@ -26,4 +26,8 @@ class Server {
 
     return true;
   }
+
+  boolean isAvailable() {
+    return this.capacityLeft > 0;
+  }
 }
