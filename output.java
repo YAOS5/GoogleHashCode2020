@@ -22,10 +22,10 @@ public class output {
         int counter = 0;
 
         for (Server server : results) {
-            if (server.videosStored.size() > 0){
+            if (server.videoStored.size() > 0){
                 counter+=1;
                 lineTwo+= server.id;
-                for (Video v: videosStored ){
+                for (Video v: server.videoStored ){
                     lineTwo += " ";
                     lineTwo += v.id;
 

@@ -2,11 +2,13 @@ import java.util.HashSet;
 
 
 class Server {
+  int id;
   HashSet<EndPoint> endpoints;
   int capacityLeft;
   HashSet<Video> videoStored;
 
-  public Server(int capacity) {
+  public Server(int id, int capacity) {
+    this.id = id;
     this.capacityLeft = capacity;
     endpoints = new HashSet<>();
     videoStored = new HashSet<>();
