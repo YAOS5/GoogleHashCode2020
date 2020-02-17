@@ -2,14 +2,28 @@ import java.io.File;  // Import the File class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.ArrayList; // import the ArrayList class
 import java.io.FileWriter;   // Import the FileWriter class
+import java.util.HashSet;
 
 public class output {
 
+
+
 //     public static void main(String[] args) {
-//         ArrayList<Integer> list=new ArrayList<Integer>();
-//         list.add(1);
-//         list.add(5);
-//         outputToFile(list);
+//         ArrayList<Server> servers=new ArrayList<Server>();
+//
+//         Server s = new Server(0, 20);
+//         s.addVideo(new Video(0, 5));
+//         s.addVideo(new Video(1,10));
+//
+//
+//         Server s2 = new Server(0, 20);
+//         s2.addVideo(new Video(2, 5));
+//         s2.addVideo(new Video(3,10));
+//
+//
+//         servers.add(s);
+//         servers.add(s2);
+//         outputToFile(servers);
 //     }
 
 
