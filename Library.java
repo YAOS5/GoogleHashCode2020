@@ -50,8 +50,12 @@ class Library {
   public void nextDay() {
     if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
-        this.state = LibraryState.SCANNING_BOOKS;
+
+        if (daysLeftSignUpComplete == 0) {
+          this.state = LibraryState.SCANNING_BOOKS;
+        }
         return;
+
     }
 
     if (this.state == LibraryState.COMPLETE) {
@@ -59,7 +63,6 @@ class Library {
     }
 
     if (this.state == LibraryState.SCANNING_BOOKS) {
-      this.scan();
 
       if (isScanning.size() != 0) {
         // add the books from yesterday to scanned
@@ -67,8 +70,12 @@ class Library {
         isScanning.clear();
       }
 
-      if (booksLeft.size() == 0)
+      if (booksLeft.size() == 0) {
         this.state = LibraryState.COMPLETE;
+        return;
+      }
+
+      this.scan();
     }
   }
 
