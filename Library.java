@@ -18,6 +18,7 @@ class Library {
     this.signUpDays = signUpDays;
     this.scanPerDay = scanPerDay;
     this.booksLeft = booksLeft;
+    sortBooksByScore(booksLeft);
 
     this.isSignedUp = false;
     this.scannedBooks = new ArrayList<>();
@@ -27,6 +28,9 @@ class Library {
     this.isScanning = new ArrayList<>();
   }
 
+  public void sortBooksByScore(ArrayList<Book> books) {
+    
+  }
 
   public void scan() {
     if (this.state == LibraryState.COMPLETE)
