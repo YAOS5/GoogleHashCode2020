@@ -29,7 +29,7 @@ class Library {
   }
 
   public void sortBooksByScore(ArrayList<Book> books) {
-    
+    Collections.sort(books, Collections.reverseOrder()); 
   }
 
   public void scan() {
