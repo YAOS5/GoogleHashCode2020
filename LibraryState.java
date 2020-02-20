@@ -1,0 +1,3 @@
+enum LibraryState {
+  NOT_SIGNED_UP, SIGNING_UP, SCANNING_BOOKS, COMPLETE
+}
