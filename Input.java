@@ -1,8 +1,8 @@
 class Input {
 
   int noBooks, noDays, noLibs;
-  ArrayList <Book> books = new ArrayList<>();
-  ArrayList <Library> libs = new ArrayList<>();
+  HashSet <Book> books = new HashSet<>();
+  HashSet <Library> libs = new HashSet<>();
 
 
   public static void read() {
@@ -15,16 +15,17 @@ class Input {
 
     String[] firstLine = lines[0].split(" ");
 
-    noBooks = firstLine[0];
-    noDays = firstLine[2];
-    noLibs = firstLine[1];
+    noBooks = Integer.parseInt(firstLine[0]);
+    noDays = Integer.parseInt(firstLine[2]);
+    noLibs = Integer.parseInt(firstLine[1]);
     String[] secondLine = lines[1].split(" ");
 
     for(int i = 0; i < noBooks; i++)
     {
-      Book temp = new Book(Integer.parseInt(secondLine[i]), i);
+      Book temp = new Book(Integer.parseInt(i, secondLine[i]));
       books.add(temp);
     }
+
     int indexLib = 0;
     for(int i = 2; i < lines.length; i = i+2)
     {
@@ -40,13 +41,14 @@ class Input {
         booksContained.add(temp);
       }
       Library lib = new Library(indexLib, signupTime, shipPerDay, booksContained);
-      index++;
+      libs.add(lib);
+      indexLib++;
     }
   }
 
   public static GoogleBooks getGoogleBooks()
   {
-    GoogleBooks gBooks = 
+    GoogleBooks gBooks = new GoogleBooks(noDays,books,libs);
     return gBooks;
   }
 
