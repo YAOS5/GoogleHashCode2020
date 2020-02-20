@@ -29,7 +29,7 @@ class Library {
   }
 
   public void sortBooksByScore(ArrayList<Book> books) {
-    Collections.sort(books); 
+    Collections.sort(books);
   }
 
   public void scan() {
@@ -93,5 +93,21 @@ class Library {
       this.scan();
     }
   }
+
+public double metric(int daysLeft) {
+
+  int totNewBooks = 0;
+
+  int totNewBooksScore = 0;
+
+  for (Book book: this.booksLeft) {
+    if (book.state == BookState.UNSCANNED) {
+      totNewBooksScore += book.score;
+      totNewBooks++;
+    }
+  }
+
+  return (daysLeft*totNewBooksScore*this.scanPerDay)/totNewBooks;
+}
 
 }

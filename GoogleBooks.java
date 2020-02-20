@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class GoogleBooks {
 
-  public int maxDay;
+  public int maxDays;
   public int currDay;
 
   Library libSigningUp;
@@ -14,8 +14,8 @@ public class GoogleBooks {
   HashSet<Library> libs;
   ArrayList<Library> signedUpLibs;
 
-  public GoogleBooks(int maxDay, HashSet<Book> books, HashSet<Library> libraries) {
-    this.maxDay = maxDay;
+  public GoogleBooks(int maxDays, HashSet<Book> books, HashSet<Library> libraries) {
+    this.maxDays = maxDays;
     this.currDay = 0;
     this.libSigningUp = null;
     this.books = books;
@@ -26,29 +26,40 @@ public class GoogleBooks {
 
   public Library getBestNextLib(HashSet<Library> libs) {
 
-    Library resultLib=null;
+    Library bestLib=null;
+    double bestLibMetric = 0;
+
     Iterator<Library> it = libs.iterator();
 
     while(it.hasNext()){
       Library lib = it.next();
 
       if (lib.state == LibraryState.NOT_SIGNED_UP) {
-        resultLib = lib;
-        break;
+        int daysLeft = this.maxDays-this.currDay-lib.signUpDays;
+
+        if (daysLeft<0) {
+          daysLeft=0;
+        }
+        double metric = lib.metric(daysLeft);
+
+        if (metric>=bestLibMetric) {
+          bestLib = lib;
+        }
       }
     }
-    return resultLib;
+
+    return bestLib;
   }
 
   public ArrayList<Library> operate() {
 
-    while(currDay<maxDay) {
+    while(currDay<maxDays) {
 
       Library nextLib;
 
       if (libSigningUp != null) {
         if (libSigningUp.state == LibraryState.SCANNING_BOOKS) {
-          signedUpLibs.add(libSigningUp);
+          this.signedUpLibs.add(libSigningUp);
           libSigningUp = null;
         }
       }
