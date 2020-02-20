@@ -108,6 +108,8 @@ class Library {
       }
     }
 
+    if (totNewBooks == 0) return 0;
+
     return (daysLeft*totNewBooksScore*this.scanPerDay)/totNewBooks;
   }
 
