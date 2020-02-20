@@ -35,8 +35,19 @@ class Library {
     this.state = LibraryState.SCANNING_BOOKS;
     // scan as many books as I can for now
     int booksToScan = Math.min(scanPerDay, booksLeft.size());
-    for (int i = 0; i < booksToScan; i++) {
+    for (int i = 0; i < booksToScan && booksLeft.size() != 0; i++) {
         Book book = booksLeft.remove(booksLeft.size() - 1);
+
+        // check if this book has been scanned / scanning
+        while (book.state == BookState.SCANNING || book.state == BookState.SCANNED) {
+          // try grab a new book
+          if (booksLeft.size() != 0) {
+            book = booksLeft.remove(booksLeft.size() - 1);
+          }
+          else {
+            break;
+          }
+        }
 
         book.state = BookState.SCANNING;
         isScanning.add(book);
