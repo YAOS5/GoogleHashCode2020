@@ -1,15 +1,26 @@
+import java.util.*;
+import java.io.File;  // Import the File class
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.util.ArrayList; // import the ArrayList class
+import java.io.FileWriter;   // Import the FileWriter class
+import java.util.HashSet;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 class Input {
 
-  int noBooks, noDays, noLibs;
-  HashSet <Book> books = new HashSet<>();
-  HashSet <Library> libs = new HashSet<>();
+  static int noBooks, noDays, noLibs;
+  static HashSet <Book> books = new HashSet<>();
+  static ArrayList <Book> booksArrayList = new ArrayList<>();
+  static HashSet <Library> libs = new HashSet<>();
 
 
-  public static void read() {
+  public static void read() throws IOException {
     // path specified(CHANGE THIS IN YOUR MACHINE)
-    String path = "/Users/shivam/Documents/GitHub/HashCode20/a_example.txt";
+    String path = "/Users/shivam/Documents/GitHub/HashCode20/d.txt";
     // file to string
-    String content = Files.readString(path, StandardCharsets.US_ASCII);
+    String content = Files.readString(Paths.get(path), StandardCharsets.US_ASCII);
     // store them line by line
     String[] lines = content.split("\\r?\\n");
 
@@ -22,8 +33,9 @@ class Input {
 
     for(int i = 0; i < noBooks; i++)
     {
-      Book temp = new Book(Integer.parseInt(i, secondLine[i]));
+      Book temp = new Book(i, Integer.parseInt(secondLine[i]));
       books.add(temp);
+      booksArrayList.add(temp);
     }
 
     int indexLib = 0;
@@ -31,13 +43,13 @@ class Input {
     {
       String[] libDesc = lines[i].split(" ");
       String[] booksDesc = lines[i+1].split(" ");
-      int libBooks = libDesc[0];
-      int signupTime = libDesc[1];
-      int shipPerDay = libDesc[2];
-      ArrayList<Books> booksContained = new ArrayList<>();
+      int libBooks = Integer.parseInt(libDesc[0]);
+      int signupTime = Integer.parseInt(libDesc[1]);
+      int shipPerDay = Integer.parseInt(libDesc[2]);
+      ArrayList<Book> booksContained = new ArrayList<>();
       for(int j = 0; j < booksDesc.length; j++)
       {
-        Book temp = books.get(Integer.parseInt(booksDesc[j]));
+        Book temp = booksArrayList.get(Integer.parseInt(booksDesc[j]));
         booksContained.add(temp);
       }
       Library lib = new Library(indexLib, signupTime, shipPerDay, booksContained);

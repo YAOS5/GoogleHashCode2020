@@ -63,6 +63,7 @@ class Library {
   }
 
   public void nextDay() {
+
     if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
 
@@ -94,20 +95,20 @@ class Library {
     }
   }
 
-public double metric(int daysLeft) {
+  public double metric(int daysLeft) {
 
-  int totNewBooks = 0;
+    int totNewBooks = 0;
 
-  int totNewBooksScore = 0;
+    int totNewBooksScore = 0;
 
-  for (Book book: this.booksLeft) {
-    if (book.state == BookState.UNSCANNED) {
-      totNewBooksScore += book.score;
-      totNewBooks++;
+    for (Book book: this.booksLeft) {
+      if (book.state == BookState.UNSCANNED) {
+        totNewBooksScore += book.score;
+        totNewBooks++;
+      }
     }
-  }
 
-  return (daysLeft*totNewBooksScore*this.scanPerDay)/totNewBooks;
-}
+    return (daysLeft*totNewBooksScore*this.scanPerDay)/totNewBooks;
+  }
 
 }

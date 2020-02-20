@@ -55,6 +55,7 @@ public class output {
 
 
         }
+
         lineTwo = lineTwo.substring(0, lineTwo.length() - 1);
         lineTwo += "\n";
         lineThree = lineThree.trim();

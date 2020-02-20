@@ -21,7 +21,9 @@ public class GoogleBooks {
     this.books = books;
     this.libs = libraries;
     this.signedUpLibs = new ArrayList<Library>();
+
     this.unSignedUpLibs = (HashSet)libraries.clone();
+
   }
 
   public Library getBestNextLib(HashSet<Library> libs) {
@@ -56,8 +58,8 @@ public class GoogleBooks {
     while(currDay<maxDays) {
 
       Library nextLib;
-
       if (libSigningUp != null) {
+
         if (libSigningUp.state == LibraryState.SCANNING_BOOKS) {
           this.signedUpLibs.add(libSigningUp);
           libSigningUp = null;
@@ -66,13 +68,24 @@ public class GoogleBooks {
 
       if (libSigningUp == null) {
         nextLib = this.getBestNextLib(this.unSignedUpLibs);
-        unSignedUpLibs.remove(nextLib);
-        nextLib.signUp();
+
+        if (nextLib != null){
+          nextLib.signUp();
+          unSignedUpLibs.remove(nextLib);
+          libSigningUp = nextLib;
+
+        }
       }
 
-      for (Library lib: signedUpLibs) {
+      //Update all signing up and scanning books libs
+      if (libSigningUp != null) {
+        libSigningUp.nextDay();
+      }
+
+      for (Library lib: this.signedUpLibs) {
         lib.nextDay();
       }
+      currDay++;
     }
 
     return this.signedUpLibs;
