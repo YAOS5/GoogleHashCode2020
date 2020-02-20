@@ -48,8 +48,11 @@ class Library {
   }
 
   public void nextDay() {
+
     if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
+        System.out.println(daysLeftSignUpComplete);
+        
 
         if (daysLeftSignUpComplete == 0) {
           this.state = LibraryState.SCANNING_BOOKS;

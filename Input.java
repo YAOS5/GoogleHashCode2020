@@ -16,7 +16,7 @@ class Input {
   static HashSet <Library> libs = new HashSet<>();
 
 
-  public static void read() {
+  public static void read() throws IOException {
     // path specified(CHANGE THIS IN YOUR MACHINE)
     String path = "/Users/shivam/Documents/GitHub/HashCode20/a_example.txt";
     // file to string

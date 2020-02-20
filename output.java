@@ -33,6 +33,7 @@ public class output {
 
 
         int noOfLib = libraries.size();
+        System.out.println(noOfLib);
         String lineOne = String.valueOf(noOfLib);
         lineOne += "\n";
 
@@ -55,6 +56,8 @@ public class output {
 
 
         }
+        System.out.println(lineOne);
+        System.out.println(lineTwo);
         lineTwo = lineTwo.substring(0, lineTwo.length() - 1);
         lineTwo += "\n";
         lineThree = lineThree.trim();
