@@ -44,6 +44,12 @@ class Input {
     }
   }
 
-  
+  public static GoogleBooks getGoogleBooks()
+  {
+    GoogleBooks gBooks = 
+    return gBooks;
+  }
+
+
 
 }
