@@ -56,6 +56,19 @@ class Input {
       libs.add(lib);
       indexLib++;
     }
+
+    for(Book temp: books){
+      temp.calcNoLibs();
+    }
+
+    Iterator<Library> it = libs.iterator();
+
+    while(it.hasNext()){
+      Library lib = it.next();
+
+      lib.calcL();
+    }
+
   }
 
   public static GoogleBooks getGoogleBooks()

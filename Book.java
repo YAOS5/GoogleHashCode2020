@@ -1,6 +1,7 @@
 class Book implements Comparable<Book> {
   int id;
   int score;
+  int noLibs;
   BookState state;
 
   public Book(int id, int score){
@@ -14,4 +15,21 @@ class Book implements Comparable<Book> {
         // need the books with the smallest score to come first
         return this.score - b.score;
       }
+
+  public calcNoLibs(HashSet<Library> libs) {
+
+    int noLibs=0;
+    Iterator<Library> it = libs.iterator();
+
+    while(it.hasNext()){
+      Library lib = it.next();
+
+      if lib.hasBook(this) {
+        noLibs++;
+      }
+
+      this.noLibs = noLibs;
+    }
+
+  }
 }

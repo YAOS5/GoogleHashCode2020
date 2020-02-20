@@ -7,6 +7,7 @@ class Library {
   int signUpDays;
   int daysLeftSignUpComplete;
   int scanPerDay;
+  int L;
   boolean isSignedUp;
   ArrayList<Book> booksLeft;
   ArrayList<Book> scannedBooks;
@@ -108,7 +109,24 @@ class Library {
       }
     }
 
-    return (daysLeft*totNewBooksScore*this.scanPerDay)/totNewBooks;
+    return (daysLeft*totNewBooksScore*this.scanPerDay)/(totNewBooks*this.L);
+  }
+
+  public hasBook(Book book) {
+    for (Book bk: this.booksLeft ) {
+      if bk.equals(book) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public calcL() {
+    int totalLibs=0;
+    for (Book book: this.booksLeft) {
+      totalLibs += book.noLibs;
+    }
+    this.L =  1/(totalLibs/this.booksLeft.size());
   }
 
 }
