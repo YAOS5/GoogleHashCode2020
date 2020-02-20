@@ -1,8 +1,8 @@
 class Input {
 
   int noBooks, noDays, noLibs;
-  ArrayList <Book> books = new ArrayList<>();
-  ArrayList <Library> libs = new ArrayList<>();
+  HashSet <Book> books = new HashSet<>();
+  HashSet <Library> libs = new HashSet<>();
 
 
   public static void read() {
@@ -41,13 +41,14 @@ class Input {
         booksContained.add(temp);
       }
       Library lib = new Library(indexLib, signupTime, shipPerDay, booksContained);
+      libs.add(lib);
       indexLib++;
     }
   }
 
   public static GoogleBooks getGoogleBooks()
   {
-    GoogleBooks gBooks = 
+    GoogleBooks gBooks = new GoogleBooks(noDays,books,libs);
     return gBooks;
   }
 
