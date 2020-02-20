@@ -18,7 +18,7 @@ class Input {
 
   public static void read() throws IOException {
     // path specified(CHANGE THIS IN YOUR MACHINE)
-    String path = "/Users/shivam/Documents/GitHub/HashCode20/d.txt";
+    String path = "/Users/peteskishi/Documents/dev/HashCode20/a_example.txt";
     // file to string
     String content = Files.readString(Paths.get(path), StandardCharsets.US_ASCII);
     // store them line by line
@@ -57,8 +57,8 @@ class Input {
       indexLib++;
     }
 
-    for(Book temp: books){
-      temp.calcNoLibs();
+    for(Book temp: booksArrayList){
+      temp.calcNoLibs(libs);
     }
 
     Iterator<Library> it = libs.iterator();
