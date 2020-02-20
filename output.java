@@ -33,32 +33,36 @@ public class output {
 
 
         int noOfLib = libraries.size();
-        String lineOne = String.valueOf(noOfLib);
-        lineOne += "\n";
+
 
 
 
         String lineTwo = "";
 
-        String lineThree = "";
+        // String lineThree = "";
 
         for (Library library : libraries) {
+            if (library.scannedBooks.size() == 0){
+              noOfLib--;
+              continue;
+            }
+
             lineTwo += String.valueOf(library.id);
             lineTwo += " ";
 
+            lineTwo += String.valueOf(library.scannedBooks.size());
+            lineTwo += "\n";
+
             for (Book book: library.scannedBooks){
-                lineThree += book.id;
-                lineThree += " ";
+                lineTwo += book.id;
+                lineTwo += " ";
             }
-            lineThree = lineThree.substring(0, lineThree.length() - 1);
-            lineThree += "\n";
+            lineTwo = lineTwo.substring(0, lineTwo.length() - 1);
+            lineTwo += "\n";
 
 
         }
-
-        lineTwo = lineTwo.substring(0, lineTwo.length() - 1);
-        lineTwo += "\n";
-        lineThree = lineThree.trim();
+        lineTwo = lineTwo.trim();
 
 
 
@@ -80,9 +84,10 @@ public class output {
 //      Write to file.
         try {
             FileWriter myWriter = new FileWriter("submission.out");
+            String lineOne = String.valueOf(noOfLib);
+            lineOne += "\n";
             myWriter.write(lineOne);
             myWriter.write(lineTwo);
-            myWriter.write(lineThree);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
