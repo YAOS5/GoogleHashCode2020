@@ -12,7 +12,7 @@ public class GoogleBooks {
   HashSet<Book> books;
   HashSet<Library> unscannedLibs;
   HashSet<Library> libs;
-  ArrayList<Library> signedUpLibs
+  ArrayList<Library> signedUpLibs;
 
   GoogleBooks(int maxDay, HashSet<Book> books, HashSet<Library> libraries) {
     this.maxDay = maxDay;

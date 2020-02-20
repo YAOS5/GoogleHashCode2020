@@ -44,11 +44,11 @@ class Library {
   }
 
   public void signUp() {
-    this.state = BookState.SIGNING_UP;
+    this.state = LibraryState.SIGNING_UP;
   }
 
   public void nextDay() {
-    if (this.state == BookState.SIGNING_UP) {
+    if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
         this.state = LibraryState.SCANNING_BOOKS;
         return;
