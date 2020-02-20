@@ -5,6 +5,7 @@ class Library {
   int id;
   LibraryState state;
   int signUpDays;
+  int daysLeftSignUpComplete;
   int scanPerDay;
   boolean isSignedUp;
   ArrayList<Book> booksLeft;
@@ -20,11 +21,13 @@ class Library {
     this.isSignedUp = false;
     this.scannedBooks = new ArrayList<>();
     this.state = LibraryState.NOT_SIGNED_UP;
+
+    this.daysLeftSignUpComplete = signUpDays;
   }
 
 
   public void scan() {
-    if (state == LibraryState.COMPLETE)
+    if (this.state == LibraryState.COMPLETE)
       return;
 
     this.state = LibraryState.SCANNING_BOOKS;
@@ -39,6 +42,27 @@ class Library {
     if (booksLeft.size() == 0)
       this.state = LibraryState.COMPLETE;
   }
+
+  public void signUp() {
+    this.state = BookState.SIGNING_UP;
+  }
+
+  public void nextDay() {
+    if (this.state == BookState.SIGNING_UP) {
+        daysLeftSignUpComplete--;
+        this.state = LibraryState.SCANNING_BOOKS;
+        return;
+    }
+
+    if (this.state == LibraryState.COMPLETE) {
+      return;
+    }
+
+    if (this.state == LibraryState.SCANNING_BOOKS) {
+      this.scan();
+    }
+  }
+
 
 
 }
