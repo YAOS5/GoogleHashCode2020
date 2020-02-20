@@ -51,7 +51,6 @@ class Library {
 
     if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
-        System.out.println(daysLeftSignUpComplete);
         
 
         if (daysLeftSignUpComplete == 0) {

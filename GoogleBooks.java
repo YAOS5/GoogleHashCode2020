@@ -23,8 +23,7 @@ public class GoogleBooks {
     this.signedUpLibs = new ArrayList<Library>();
 
     this.unSignedUpLibs = (HashSet)libraries.clone();
-    System.out.println("libraries in constructor" + libraries);
-    System.out.println("unSignedUpLibs in constructor" + unSignedUpLibs);
+
   }
 
   public Library getBestNextLib(HashSet<Library> libs) {
@@ -50,12 +49,9 @@ public class GoogleBooks {
 
       Library nextLib;
       if (libSigningUp != null) {
-        System.out.println("uvin1" + libSigningUp.state);
 
         if (libSigningUp.state == LibraryState.SCANNING_BOOKS) {
-          System.out.println("uvin");
           signedUpLibs.add(libSigningUp);
-          System.out.println(this.signedUpLibs.size());
           libSigningUp = null;
         }
       }
@@ -72,21 +68,19 @@ public class GoogleBooks {
 
       }
 
-      System.out.println("signeduplibs" + this.signedUpLibs);
+
 
       //Update all signing up and scanning books libs
       if (libSigningUp != null) {
         libSigningUp.nextDay();
       }
-      
+
       for (Library lib: this.signedUpLibs) {
-        System.out.println("next day is called");
         lib.nextDay();
       }
       currDay++;
     }
 
-    System.out.println(this.signedUpLibs.size());
     return this.signedUpLibs;
 
   }
