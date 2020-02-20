@@ -10,6 +10,7 @@ class Library {
   boolean isSignedUp;
   ArrayList<Book> booksLeft;
   ArrayList<Book> scannedBooks;
+  ArrayList<Book> isScanning;
 
 
   public Library(int id, int signUpDays, int scanPerDay, ArrayList<Book> booksLeft) {
@@ -23,6 +24,7 @@ class Library {
     this.state = LibraryState.NOT_SIGNED_UP;
 
     this.daysLeftSignUpComplete = signUpDays;
+    this.isScanning = new ArrayList<>();
   }
 
 
@@ -35,12 +37,10 @@ class Library {
     int booksToScan = Math.min(scanPerDay, booksLeft.size());
     for (int i = 0; i < booksToScan; i++) {
         Book book = booksLeft.remove(booksLeft.size() - 1);
-        book.state = BookState.SCANNED;
-        scannedBooks.add(book);
-    }
 
-    if (booksLeft.size() == 0)
-      this.state = LibraryState.COMPLETE;
+        book.state = BookState.SCANNING;
+        isScanning.add(book);
+    }
   }
 
   public void signUp() {
@@ -50,8 +50,12 @@ class Library {
   public void nextDay() {
     if (this.state == LibraryState.SIGNING_UP) {
         daysLeftSignUpComplete--;
-        this.state = LibraryState.SCANNING_BOOKS;
+
+        if (daysLeftSignUpComplete == 0) {
+          this.state = LibraryState.SCANNING_BOOKS;
+        }
         return;
+
     }
 
     if (this.state == LibraryState.COMPLETE) {
@@ -59,10 +63,20 @@ class Library {
     }
 
     if (this.state == LibraryState.SCANNING_BOOKS) {
+
+      if (isScanning.size() != 0) {
+        // add the books from yesterday to scanned
+        scannedBooks.addAll(isScanning);
+        isScanning.clear();
+      }
+
+      if (booksLeft.size() == 0) {
+        this.state = LibraryState.COMPLETE;
+        return;
+      }
+
       this.scan();
     }
   }
-
-
 
 }
